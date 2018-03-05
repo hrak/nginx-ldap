@@ -1,8 +1,8 @@
-FROM alpine:3.6 as nginx-build
+FROM alpine:3.7 as nginx-build
 
 MAINTAINER Hans Rakers <h.rakers@global.leaseweb.com>
 
-ENV NGINX_VERSION release-1.12.1
+ENV NGINX_VERSION release-1.12.2
 
 RUN echo "==> Installing dependencies..." \
  && apk update \
@@ -47,11 +47,11 @@ RUN echo "==> Installing dependencies..." \
 	&& make -j$(getconf _NPROCESSORS_ONLN) \
 	&& make install
 
-FROM alpine:3.6
+FROM alpine:3.7
 
 MAINTAINER Hans Rakers <h.rakers@global.leaseweb.com>
 
-ENV DOCKERIZE_VERSION v0.5.0
+ENV DOCKERIZE_VERSION v0.6.0
 
 ARG NGINX_PREFIX="/usr/local/nginx"
 
