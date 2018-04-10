@@ -64,6 +64,7 @@ RUN echo "==> Finishing..." \
 	&& mkdir /etc/nginx/conf.d \
 	&& rm -f /etc/nginx/*.default \
 	&& mkdir /var/log/nginx \
+        && touch /var/log/nginx/access.log /var/log/nginx/error.log \
 	&& mkdir -p /usr/share/nginx/html \
 	&& install -m644 ${NGINX_PREFIX}/html/index.html /usr/share/nginx/html/ \
 	&& install -m644 ${NGINX_PREFIX}/html/50x.html /usr/share/nginx/html/ \
