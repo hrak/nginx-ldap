@@ -51,7 +51,7 @@ FROM alpine:3.7
 
 MAINTAINER Hans Rakers <h.rakers@global.leaseweb.com>
 
-ENV DOCKERIZE_VERSION v0.6.0
+ENV DOCKERIZE_VERSION v0.6.1
 
 ARG NGINX_PREFIX="/usr/local/nginx"
 
