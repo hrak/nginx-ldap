@@ -1,13 +1,13 @@
-FROM alpine:3.7 as nginx-build
+FROM alpine:3.8 as nginx-build
 
 MAINTAINER Hans Rakers <h.rakers@global.leaseweb.com>
 
-ENV NGINX_VERSION release-1.12.2
+ENV NGINX_VERSION release-1.15.8
 
 RUN echo "==> Installing dependencies..." \
  && apk update \
  && apk add --virtual build-deps \
-    make gcc musl-dev openldap-dev \
+    make gcc libc-dev openldap-dev \
     pcre-dev libressl-dev zlib-dev \
     linux-headers wget git \
     && mkdir /var/log/nginx \
@@ -47,7 +47,7 @@ RUN echo "==> Installing dependencies..." \
 	&& make -j$(getconf _NPROCESSORS_ONLN) \
 	&& make install
 
-FROM alpine:3.7
+FROM alpine:3.8
 
 MAINTAINER Hans Rakers <h.rakers@global.leaseweb.com>
 
