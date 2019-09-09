@@ -1,8 +1,8 @@
-FROM alpine:3.8 as nginx-build
+FROM alpine:3.10 as nginx-build
 
 MAINTAINER Hans Rakers <h.rakers@global.leaseweb.com>
 
-ENV NGINX_VERSION release-1.15.8
+ENV NGINX_VERSION release-1.16.1
 
 RUN echo "==> Installing dependencies..." \
  && apk update \
@@ -47,7 +47,7 @@ RUN echo "==> Installing dependencies..." \
 	&& make -j$(getconf _NPROCESSORS_ONLN) \
 	&& make install
 
-FROM alpine:3.8
+FROM alpine:3.10
 
 MAINTAINER Hans Rakers <h.rakers@global.leaseweb.com>
 
@@ -71,7 +71,7 @@ RUN echo "==> Finishing..." \
     && ln -sf ${NGINX_PREFIX}/sbin/nginx /usr/sbin/nginx \
 	&& apk update \
 	&& apk add --no-cache \
-        libpcrecpp libpcre16 libpcre32 libressl libssl1.0 pcre libldap libgcc libstdc++ \
+        libpcrecpp libpcre16 libpcre32 libressl libssl1.1 pcre libldap libgcc libstdc++ \
 	&& rm -rf /var/cache/apk/* \
 	&& wget -O /tmp/dockerize.tar.gz https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
 	&& tar -C /usr/local/bin -xzvf /tmp/dockerize.tar.gz \
